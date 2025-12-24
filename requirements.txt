@@ -1,5 +1,5 @@
-streamlit
-pandas
-numpy
-plotly
-wbgapi
+streamlit==1.32.2
+pandas==2.2.2
+numpy==1.26.4
+plotly==5.20.0
+wbgapi==1.0.12
