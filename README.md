@@ -8,3 +8,10 @@ Website: https://data.worldbank.org/
 # 🌍 Live Demo
 
 👉 https://africa-analytics.streamlit.app
+
+# Docker Image
+
+```bash
+docker pull barafat2/west-africa-world-bank-dashboard
+docker run -p 8501:8501 barafat2/west-africa-world-bank-dashboard
+```
