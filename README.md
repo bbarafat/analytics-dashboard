@@ -1,6 +1,10 @@
 # analytics-dashboard
-This is a dashboard project that creates stunning visualizations of GDP data of Africa
+This is a dashboard project that creates stunning visualizations of various economic indicators for West African countries
 
-## 🌍 Live Demo
+# Data Source
+Data is sourced from the WorldBanks open datasets via their API (wbgapi)
+Website: https://data.worldbank.org/
 
-👉 https://YOUR-APP-NAME.streamlit.app
+# 🌍 Live Demo
+
+👉 https://africa-analytics.streamlit.app
