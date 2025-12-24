@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import sys
 from pathlib import Path
+import numpy as np
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT_DIR))
@@ -84,3 +85,35 @@ filtered = df[
     (df["indicator"] == indicator_code)
     & (df["country"].isin(selected_countries))
 ].copy()
+
+if filtered.empty:
+    st.warning("No data available for this selection.")
+    st.stop()
+
+
+latest_year = filtered["year"].max()
+latest_df = filtered[filtered["year"] == latest_year]
+
+latest_avg = latest_df["value"].mean()
+
+start_df = filtered.groupby("country").first()["value"]
+end_df = filtered.groupby("country").last()["value"]
+
+growth_pct = ((end_df - start_df) / start_df * 100).replace(
+    [np.inf, -np.inf], np.nan
+)
+
+avg_growth = growth_pct.mean()
+
+top_country = (
+    latest_df.groupby("country")["value"]
+    .mean()
+    .idxmax()
+)    
+
+c1, c2, c3, c4 = st.columns(4)
+
+c1.metric("Latest year", int(latest_year))
+c2.metric("Avg value (latest)", f"{latest_avg:,.2f}")
+c3.metric("Avg growth (%)", f"{avg_growth:,.2f}%")
+c4.metric("Top country", top_country)
